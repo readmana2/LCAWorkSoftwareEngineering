@@ -17,6 +17,13 @@ class TestingLCA(unittest.TestCase):
 
         result=findLCA(root,5,4)
         self.assertEqual(result,1)
+
+    def test_emptyGraaph(self):
+        #assert(False)
+        root = None
+
+        result=findLCA(root,5,4)
+        self.assertEqual(result,-1)
         
 
 if __name__=='__main__':
