@@ -41,37 +41,38 @@ public class BST<Key extends Comparable<Key>, Value> {
 	}
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		// TODO Auto-generated method stub
 
 
-		BST<Integer, Integer> bst = new BST<Integer, Integer>();      
-		//			bst.put(7, 7);
-
-
-				
-		bst.put(7, 7);   //        _7_
-		bst.put(8, 8);   //      /     \
-		bst.put(3, 3);   //    _3_      8
-		bst.put(1, 1);   //  /     \
-		bst.put(2, 2);   // 1       6
-		bst.put(6, 6);   //  \     /
-		bst.put(4, 4);   //   2   4
-		bst.put(5, 5);   //        \
-						 //         5
-
-
-		
-		
-//		int node1=8;
-//		int node2=4;
-//		bst.findLCA(node1, node2);
-
-		
-		
-		int node3=8;
-		int node4=5;
-		bst.findLCA(node3, node4);
+//		BST<Integer, Integer> bst = new BST<Integer, Integer>();      
+//		//			bst.put(7, 7);
+//
+//
+//				
+//		bst.put(7, 7);   //        _7_
+//		bst.put(8, 8);   //      /     \
+//		bst.put(3, 3);   //    _3_      8
+//		bst.put(1, 1);   //  /     \
+//		bst.put(2, 2);   // 1       6
+//		bst.put(6, 6);   //  \     /
+//		bst.put(4, 4);   //   2   4
+//		bst.put(5, 5);   //        \
+//						 //         5
+//
+//
+//		
+//		
+////		int node1=8;
+////		int node2=4;
+////		bst.findLCA(node1, node2);
+//
+//		
+//		
+//		int node3=8;
+//		int node4=5;
+//		bst.findLCA(node3, node4);
 
 	}
 
@@ -204,7 +205,36 @@ public class BST<Key extends Comparable<Key>, Value> {
 
 	///////////////////////////////////////////////////////
 
+	public String printKeysInOrder() {
+		if (isEmpty()) return "()";
+		// TODO fill in the correct implementation
 
+
+		return  printKeysInOrder(root);
+
+	}
+
+
+	private String printKeysInOrder(Node x)//, String keyString)
+	{
+		String keyString="";
+
+		if(x==null)
+		{
+			return "()";
+		}
+
+
+		keyString=keyString+"(";
+		keyString=keyString + printKeysInOrder(x.left);	
+		keyString=keyString + x.key;			
+		keyString=keyString+printKeysInOrder(x.right);//,keyString);
+		keyString=keyString+")";
+
+
+		return keyString;
+
+	}
 
 
 
