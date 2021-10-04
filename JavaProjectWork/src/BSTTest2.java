@@ -14,7 +14,7 @@ public class BSTTest2 {
 
 	/*
 	 * This test should construct a binary Tree and ensure the print Keys in Order method matches the way it is created
-	 * 
+	 * The tests are designed to ensure the tree works as intended
 	 */
 	@Test
 	public void testTree() {
@@ -52,6 +52,12 @@ public class BSTTest2 {
 		
 		
 	}
+	
+	
+	/*
+	 * 
+	 * This test should do a basic check of the LCA and make sure it is returning the correct result
+	 */
 	@Test
 	public void testLCA() {
 		BST<Integer, Integer> bst = new BST<Integer, Integer>();
@@ -73,6 +79,13 @@ public class BSTTest2 {
 		assertEquals("Finding LCA of 2 and 5",testKey,3);
 				
 	}
+	
+	/*
+	 * 
+	 * 
+	 * THis test should test special cases that should return null and not create an error messsage
+	 * 
+	 */
 	@Test
 	public void testSpecialCases() {
 		BST<Integer, Integer> bst = new BST<Integer, Integer>();
