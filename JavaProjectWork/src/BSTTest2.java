@@ -55,7 +55,7 @@ public class BSTTest2 {
 	@Test
 	public void testLCA() {
 		BST<Integer, Integer> bst = new BST<Integer, Integer>();
-		System.out.println("testing");
+		
 		bst.put(7, 7);   //        _7_
 		bst.put(8, 8);   //      /     \
 		bst.put(3, 3);   //    _3_      8
@@ -70,11 +70,26 @@ public class BSTTest2 {
 		//bst.findLCA(2, 5);
 		
 		Comparable<Integer> testKey = bst.findLCA(2, 5);
-		
 		assertEquals("Finding LCA of 2 and 5",testKey,3);
-		
-		
-		
+				
+	}
+	@Test
+	public void testSpecialCases() {
+		BST<Integer, Integer> bst = new BST<Integer, Integer>();
+		System.out.println("testing");
+		bst.put(7, 7);   //        _7_
+		bst.put(8, 8);   //      /     \
+		bst.put(3, 3);   //    _3_      8
+		bst.put(1, 1);   //  /     \
+		bst.put(2, 2);   // 1       6
+		bst.put(6, 6);   //  \     /
+		bst.put(4, 4);   //   2   4
+		bst.put(5, 5);   //        \
+						 //         5
+
+		Comparable<Integer> testKey = bst.findLCA(2, 9);	
+		assertEquals("Checking  LCA works when  there is no LCA",testKey,null);
+				
 	}
 
 }
