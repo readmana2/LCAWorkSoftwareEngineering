@@ -40,7 +40,19 @@ class TestingLCA(unittest.TestCase):
         root.right=Node(2)
 
         result=findLCA(root,1,2)
-        self.assertEqual(result,1)           
+        self.assertEqual(result,1)   
+
+
+
+    def test_NoLCA(self):
+        #assert(False)
+        root = Node(1)
+        root.right=Node(2)
+        root.left=Node(3)
+        
+
+        result=findLCA(root,1,4)
+        self.assertEqual(result,-1)                 
 
 
 
