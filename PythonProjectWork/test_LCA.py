@@ -26,6 +26,13 @@ class TestingLCA(unittest.TestCase):
         self.assertEqual(result,-1)
         
 
+
+    def test_sameNodeLCA(self):
+        #assert(False)
+        root = Node(1)
+
+        result=findLCA(root,1,1)
+        self.assertEqual(result,1)    
 if __name__=='__main__':
     unittest.main()        
 
