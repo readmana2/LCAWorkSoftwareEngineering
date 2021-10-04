@@ -106,14 +106,14 @@ public class BST<Key extends Comparable<Key>, Value> {
 		
 		boolean ancestorFound=false;
 		
+
 		for(int i=0;i<path1.size();i++)
 		{
 			if(ancestorFound==true)
 			{
 				break;
 			}
-			
-			
+
 			for(int j=0;j<path2.size();j++)
 			{
 				
@@ -121,7 +121,16 @@ public class BST<Key extends Comparable<Key>, Value> {
 				{
 					ancestorFound=true;
 					//System.out.println("LCA is:"+path1.get(i));
+					
+					
 					Key test = path1.get(i);
+					
+					//This just clears everything so we can use it again
+					path1.clear();
+					path2.clear();
+					found1=false;
+					found2=false;
+					
 					return test;
 					//return path1.get(i);
 					
