@@ -3,10 +3,11 @@
 /*************************************************************************
  *  Binary Search Tree class.
  *  	-Adapted from Sedgewick and Wayne.
+ *  	-Adapted from Algorithms and Data Structures Module
  *
  *		How this code Works
  *		The binary search tree class was something we used in our Algorithms and Data Structures Module.
- *		Im using it to build the binary Tree that I can then use to find the LCA of any given Nodes.
+ *		Im using it to build a binary Tree that I can then use to find the LCA of any given Nodes.
  *		I added two recurvive functions that travel down the tree to find the Node and then go back up
  *		via returning while adding the path to an arrayList.
  *		I also added a mainline to test the code out
@@ -87,7 +88,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 
 
 
-	public void findLCA(Key one, Key two)
+	public Comparable<Key> findLCA(Key one, Key two)
 	{
 
 		findNode1(root, one);
@@ -120,12 +121,18 @@ public class BST<Key extends Comparable<Key>, Value> {
 				{
 					ancestorFound=true;
 					System.out.println("LCA is:"+path1.get(i));
+					Key test = path1.get(i);
+					return test;
+					//return path1.get(i);
+					
 					
 				}	
 				
 			}
 
 		}
+		
+		return null;
 		
 	}
 	
