@@ -125,7 +125,7 @@ public class BSTTest2 {
 	/*
 	 * 
 	 * 
-	 * THis test should test the delete
+	 * THis test should test the functions used to create the tree such as delete and put
 	 * 
 	 */
 	@Test
@@ -134,25 +134,16 @@ public class BSTTest2 {
 		BST<Integer, Integer> bst = new BST<Integer, Integer>();
 		
 		bst.put(7, 7);   //        _7_
-		bst.put(8, 8);   //      /     \
-		bst.put(3, 3);   //    _3_      8
-		bst.put(1, 1);   //  /     \
-		bst.put(2, 2);   // 1       6
-		bst.put(6, 6);   //  \     /
-		bst.put(4, 4);   //   2   4
-		bst.put(5, 5);   //        \
-						 //         5
+		bst.put(8, 8);   //      /     8
 
-		Comparable<Integer> testKey = bst.findLCA(2, 9);	
-		assertEquals("Checking  LCA works when  there is no LCA",testKey,null);
+		//Testing delete
+		bst.delete(8);	
+		assertEquals("Testing delete works","(()7())",bst.printKeysInOrder());
 		
+		bst.put(8, 8);
+		assertEquals("testing put works correctly","(()7(()8()))",bst.printKeysInOrder());
 		
-		Comparable<Integer> testKey2 = bst.findLCA(10, 9);	
-		assertEquals("Checking  LCA works when given nodes dont exist",testKey2,null);
-		
-		BST<Integer, Integer> bst2 = new BST<Integer, Integer>();
-		Comparable<Integer> testKey3 = bst2.findLCA(10, 9);
-		assertEquals("Checking  LCA works when given tree is empty",testKey3,null);
+
 		
 		
 				
