@@ -293,86 +293,8 @@ public class BST<Key extends Comparable<Key>, Value> {
 	}
 
 
-	public int height() {
-		//TODO fill in the correct implementation.
-
-		if(isEmpty()==true)
-		{
-			return -1;
-		}
-		else
-		{
-			//System.out.println("testHeight");
-			return height(root);
-		}
-	}
-
-	private int height(Node node) 
-	{
-		//	System.out.println("test1");
 
 
-		if(node==null)
-		{
-			//	System.out.println("testNull");
-
-			return -1;
-		}
-
-		int heightLeft=height(node.left);
-		//	System.out.println("test2");
-
-		int heightRight=height(node.right);
-		//System.out.println("test3");
-
-		if(heightLeft > heightRight)
-		{
-			return heightLeft+1;
-		}
-		else 
-		{
-			return heightRight+1;
-		}
-
-
-	}
-
-	public Key median() {
-		if (isEmpty()) return null;
-		//TODO fill in the correct implementation. The running time should be Theta(h), where h is the height of the tree.
-
-
-		int currentSize=size(root);
-		int medianPoint = (currentSize-1)/2;		//K(N-1)/2
-
-
-
-		return median(root, medianPoint);
-
-	}
-
-
-
-	private Key median(Node x, int median)
-	{
-
-		int t = size(x.left);
-
-		if (t > median) 
-		{
-			//System.out.println("left key:"+x.left.key);
-			return median(x.left, median);
-		}
-		else if (t < median)
-		{
-			//System.out.println("right key:"+x.right.key);
-			return median(x.right, median-t-1);
-		}
-		else
-		{
-			return x.key;
-		}		
-	}
 
 	public void delete(Key key) {
 		//TODO fill in the correct implementation.

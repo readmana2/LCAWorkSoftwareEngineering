@@ -97,6 +97,8 @@ public class BSTTest2 {
 		BST<Integer, Integer> bst2 = new BST<Integer, Integer>();
 		Comparable<Integer> testKey3 = bst2.findLCA(10, 9);
 		assertEquals("Checking  LCA works when given tree is empty",testKey3,null);
+		
+		
 				
 	}
 
