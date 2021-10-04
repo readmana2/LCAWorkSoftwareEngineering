@@ -4,12 +4,7 @@ import org.junit.Test;
 
 public class BSTTest2 {
 
-	@Test
-	public void test() {
-		//fail("Not yet implemented");
-	}
-	
-	
+
 	
 
 	/*
@@ -80,6 +75,12 @@ public class BSTTest2 {
 		
 		Comparable<Integer> testKey2 = bst.findLCA(3, 8);
 		assertEquals("Finding LCA of 3 and 8",testKey2,7);
+		
+		Comparable<Integer> testKey3 = bst.findLCA(5, 3);
+		assertEquals("Finding LCA of 5 and 3",testKey3,3);
+		
+		Comparable<Integer> testKey4 = bst.findLCA(5, 5);	
+		assertEquals("Checking  LCA works  when given duplicate nodes",testKey4,5);
 				
 	}
 	
@@ -90,7 +91,46 @@ public class BSTTest2 {
 	 * 
 	 */
 	@Test
-	public void testSpecialCases() {
+	public void testSpecialCases() 
+	{
+		BST<Integer, Integer> bst = new BST<Integer, Integer>();
+		
+		bst.put(7, 7);   //        _7_
+		bst.put(8, 8);   //      /     \
+		bst.put(3, 3);   //    _3_      8
+		bst.put(1, 1);   //  /     \
+		bst.put(2, 2);   // 1       6
+		bst.put(6, 6);   //  \     /
+		bst.put(4, 4);   //   2   4
+		bst.put(5, 5);   //        \
+						 //         5
+
+		Comparable<Integer> testKey = bst.findLCA(2, 9);	
+		assertEquals("Checking  LCA works when  there is no LCA",testKey,null);
+		
+		
+		Comparable<Integer> testKey2 = bst.findLCA(10, 9);	
+		assertEquals("Checking  LCA works when given nodes dont exist",testKey2,null);
+		
+
+		
+		
+		BST<Integer, Integer> bst2 = new BST<Integer, Integer>();
+		Comparable<Integer> testKey3 = bst2.findLCA(10, 9);
+		assertEquals("Checking  LCA works when given tree is empty",testKey3,null);
+		
+		
+				
+	}
+	/*
+	 * 
+	 * 
+	 * THis test should test the delete
+	 * 
+	 */
+	@Test
+	public void testExtraFunctions() 
+	{
 		BST<Integer, Integer> bst = new BST<Integer, Integer>();
 		
 		bst.put(7, 7);   //        _7_
