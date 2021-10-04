@@ -267,22 +267,6 @@ public class BST<Key extends Comparable<Key>, Value> {
 		else return x.N;
 	}
 
-
-	public boolean contains(Key key) {
-		return get(key) != null;
-	}
-
-
-	public Value get(Key key) { return get(root, key); }
-
-	private Value get(Node x, Key key) {
-		if (x == null) return null;
-		int cmp = key.compareTo(x.key);
-		if      (cmp < 0) return get(x.left, key);
-		else if (cmp > 0) return get(x.right, key);
-		else              return x.val;
-	}
-
 	public void put(Key key, Value val) 
 	{
 		if (val == null) 
@@ -304,8 +288,8 @@ public class BST<Key extends Comparable<Key>, Value> {
 
 
 
-
-	public void delete(Key key) {
+	public void delete(Key key) 
+	{
 		//TODO fill in the correct implementation.
 
 		root=delete(root, key);
