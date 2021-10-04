@@ -77,6 +77,9 @@ public class BSTTest2 {
 		
 		Comparable<Integer> testKey = bst.findLCA(2, 5);
 		assertEquals("Finding LCA of 2 and 5",testKey,3);
+		
+		Comparable<Integer> testKey2 = bst.findLCA(3, 8);
+		assertEquals("Finding LCA of 3 and 8",testKey2,7);
 				
 	}
 	
