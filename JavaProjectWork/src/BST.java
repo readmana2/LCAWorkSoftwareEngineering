@@ -120,7 +120,7 @@ public class BST<Key extends Comparable<Key>, Value> {
 				if(path1.get(i).equals(path2.get(j)))
 				{
 					ancestorFound=true;
-					System.out.println("LCA is:"+path1.get(i));
+					//System.out.println("LCA is:"+path1.get(i));
 					Key test = path1.get(i);
 					return test;
 					//return path1.get(i);

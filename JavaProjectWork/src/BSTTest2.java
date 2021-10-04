@@ -76,7 +76,7 @@ public class BSTTest2 {
 	@Test
 	public void testSpecialCases() {
 		BST<Integer, Integer> bst = new BST<Integer, Integer>();
-		System.out.println("testing");
+		
 		bst.put(7, 7);   //        _7_
 		bst.put(8, 8);   //      /     \
 		bst.put(3, 3);   //    _3_      8
@@ -89,6 +89,14 @@ public class BSTTest2 {
 
 		Comparable<Integer> testKey = bst.findLCA(2, 9);	
 		assertEquals("Checking  LCA works when  there is no LCA",testKey,null);
+		
+		
+		Comparable<Integer> testKey2 = bst.findLCA(10, 9);	
+		assertEquals("Checking  LCA works when given nodes dont exist",testKey2,null);
+		
+		BST<Integer, Integer> bst2 = new BST<Integer, Integer>();
+		Comparable<Integer> testKey3 = bst2.findLCA(10, 9);
+		assertEquals("Checking  LCA works when given tree is empty",testKey3,null);
 				
 	}
 
