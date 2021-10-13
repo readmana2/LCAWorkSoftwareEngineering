@@ -8,4 +8,8 @@ For the Java Implementation, I decided to use a Binary Search Tree Class I used 
 
 
 
+I did both the LCA implementations before the lecturer told us to do Unit testing.
+
+
+
 
