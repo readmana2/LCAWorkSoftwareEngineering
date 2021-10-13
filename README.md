@@ -9,6 +9,7 @@ For the Python Implementation, I didnt think I would be able to construct a Bina
 
 
 I did both the LCA implementations before the lecturer told us to do Unit testing.
+I did unit testing for both implementations but the java unit testing is more detailed and where I focused my efforts as that is the language I was focusing on.
 
 
 
