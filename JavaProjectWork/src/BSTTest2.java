@@ -56,7 +56,31 @@ public class BSTTest2 {
 		
 		assertEquals("Testing a Graph with only right Nodes","(()7(()8(()9(()10(()11())))))",bst.printKeysInOrder());
 		
+		
+		
+		
+		
+		
+		bst.put(6,6);   //       2<-3<-4<-5<-6<-root(7)-->8-->9-->10-->11
+		bst.put(5,5);   //           
+		bst.put(4,4);   //             
+		bst.put(3,3);   // 
+		bst.put(2,2);   // 
+		
+		assertEquals("Testing a Graph with only left and right Nodes","((((((()2())3())4())5())6())7(()8(()9(()10(()11())))))",bst.printKeysInOrder());
 		//System.out.println(bst.printKeysInOrder());
+		
+		BST<Integer, Integer> bst2 = new BST<Integer, Integer>();
+		
+		bst2.put(7, 7);
+		bst2.put(6,6);   //       2<-3<-4<-5<-6<-root(7)
+		bst2.put(5,5);   //           
+		bst2.put(4,4);   //             
+		bst2.put(3,3);   // 
+		bst2.put(2,2);   // 
+		
+		assertEquals("Testing a Graph with only left Nodes","((((((()2())3())4())5())6())7())",bst2.printKeysInOrder());
+
 		
 	}
 	
