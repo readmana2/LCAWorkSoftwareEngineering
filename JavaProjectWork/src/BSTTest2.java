@@ -139,6 +139,18 @@ public class BSTTest2 {
 	
 		assertEquals("Checking  LCA works  when given duplicate nodes",testKey5,8);
 		
+		bst2.put(7, 7);
+		bst2.put(6,6);   //       2<-3<-4<-5<-6<-root(7)-->8-->9-->10-->11
+		bst2.put(5,5);   //           
+		bst2.put(4,4);   //             
+		bst2.put(3,3);   // 
+		bst2.put(2,2);   // 
+		
+		Comparable<Integer> testKey6 = bst2.findLCA(2, 11);	
+		assertEquals("Checking  LCA works  when given a tree with only right and left nodes",testKey6,7);
+
+		
+		
 	}
 	
 	/*
