@@ -67,6 +67,11 @@ public class BSTTest2 {
 	 */
 	@Test
 	public void testLCA() {
+		
+		
+		
+		//Tree 1
+		
 		BST<Integer, Integer> bst = new BST<Integer, Integer>();
 		
 		bst.put(7, 7);   //        _7_
@@ -93,7 +98,23 @@ public class BSTTest2 {
 		
 		Comparable<Integer> testKey4 = bst.findLCA(5, 5);	
 		assertEquals("Checking  LCA works  when given duplicate nodes",testKey4,5);
-				
+		
+		
+		
+		//Tree 2
+		
+		BST<Integer, Integer> bst2 = new BST<Integer, Integer>();
+
+		bst2.put(7, 7);   //        _7-->8-->9-->10-->11
+		bst2.put(8, 8);   //           
+		bst2.put(9, 9);   //             
+		bst2.put(10, 10);   // 
+		bst2.put(11, 11);   // 
+		
+		Comparable<Integer> testKey5 = bst2.findLCA(8, 11);
+	
+		assertEquals("Checking  LCA works  when given duplicate nodes",testKey5,8);
+		
 	}
 	
 	/*
