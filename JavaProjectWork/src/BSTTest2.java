@@ -46,6 +46,18 @@ public class BSTTest2 {
 		assertEquals("Empty Tree","()", bst.printKeysInOrder());
 		
 		
+		//Testing binary Search tree constructed  with only nodes going to the right
+		
+		bst.put(7, 7);   //        _7-->8-->9-->10-->11
+		bst.put(8, 8);   //           
+		bst.put(9, 9);   //             
+		bst.put(10, 10);   // 
+		bst.put(11, 11);   // 
+		
+		assertEquals("Testing a Graph with only right Nodes","(()7(()8(()9(()10(()11())))))",bst.printKeysInOrder());
+		
+		//System.out.println(bst.printKeysInOrder());
+		
 	}
 	
 	
