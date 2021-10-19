@@ -6,6 +6,20 @@ public class BSTTest2 {
 
 
 	
+	
+	//Empty test
+	@Test
+	public void testDAG() {
+		
+		
+	
+	}
+	
+	
+	
+	
+	
+	
 
 	/*
 	 * This test should construct a binary Tree and ensure the print Keys in Order method matches the way it is created
