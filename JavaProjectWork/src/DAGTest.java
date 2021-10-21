@@ -50,6 +50,11 @@ public class DAGTest {
 		dag1.add(2,3);
 		dag1.add(2,4);
 		
+		assertEquals(false, dag1.cycleExists);
+		
+		dag1.add(4, 0);
+		assertEquals(true, dag1.cycleExists);
+		
 	}
 	
 	@Test
