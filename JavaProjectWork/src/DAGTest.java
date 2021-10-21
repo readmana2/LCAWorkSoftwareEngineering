@@ -10,7 +10,7 @@ public class DAGTest {
 		DAG dag1 = new DAG(5);
 						
 		//Testing a Normal  Binary Tree Graph
-		assertEquals("if Dag successfully adds node 2 to 1 then it should return true",true,dag1.add(0,1));
+		assertEquals("if Dag successfully adds node then should return true",true,dag1.add(0,1));
 		dag1.add(0,2);
 		dag1.add(1,3);
 		dag1.add(2,4);
@@ -22,7 +22,7 @@ public class DAGTest {
 		dag1.add(0,1);	
 		dag1.add(1,2);
 		dag1.add(2,3);
-		dag1.add(3,4);
+		assertEquals("if Dag successfully adds node then should return true",true,dag1.add(3,4));
 		
 		//Testing a Graph construction where a node has multiple child Nodes
 		dag1 = new DAG(5);
@@ -30,7 +30,7 @@ public class DAGTest {
 		dag1.add(0,1);	
 		dag1.add(0,2);
 		dag1.add(0,3);
-		dag1.add(0,4);
+		assertEquals("if Dag successfully adds node then should return true",true,dag1.add(0,4));
 		
 		
 		assert(true);
