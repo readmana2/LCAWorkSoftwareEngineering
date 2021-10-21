@@ -28,7 +28,7 @@ public class DAG
     
 	private ArrayList<Integer>[] adj;//Replacing the original BAG data structure with a fixed size array where every node corresponds to its 
 									//index and each index contains an arrayList of all children
-    private int[] indegree;       //How many children this node has
+    private int[] indegree;       //How many incomign links this node has
     
 
     //Making the empty graph
@@ -50,10 +50,12 @@ public class DAG
     
     
     
-    public boolean add(int a,int b)
+    public void add(int v, int w) 
     {
-		return false;
-    	
+
+        adj[v].add(w);//Add w to the arraylist of vertex v's children
+        indegree[w]++;//Increase the number of links that are attached to w.
+        E++;
     }
     
     public int getLCA(int a, int b)
