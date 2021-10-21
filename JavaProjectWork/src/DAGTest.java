@@ -55,6 +55,11 @@ public class DAGTest {
 		dag1.add(4, 0);
 		assertEquals(true, dag1.cycleExists);
 		
+		dag1=new DAG(2);
+		dag1.add(0, 1);
+		dag1.add(1, 0);
+		assertEquals(true, dag1.cycleExists);
+		
 	}
 	
 	@Test
@@ -70,6 +75,9 @@ public class DAGTest {
 		dag1.add(2,4);
 		
 		assertEquals(2,dag1.getLCA(4,3));
+		
+		
+		
 		assertEquals(0,dag1.getLCA(1,4));
 		
 		
