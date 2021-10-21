@@ -50,12 +50,19 @@ public class DAG
     
     
     
-    public void add(int v, int w) 
+    public boolean add(int v, int w) 
     {
+    	if(v<0||w<0||v>V||w>V)
+    	{
+    		return false;
+    	}
 
         adj[v].add(w);//Add w to the arraylist of vertex v's children
         indegree[w]++;//Increase the number of links that are attached to w.
         E++;
+        
+       
+        return true;
     }
     
     public int getLCA(int a, int b)
