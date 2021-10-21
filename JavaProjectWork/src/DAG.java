@@ -1,10 +1,16 @@
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 /*
  * 
  * To construct the Directed Graph I used resources I found in the
- * algorithms textbook found here: https://algs4.cs.princeton.edu/
+ * algorithms textbook found here:
+ * https://algs4.cs.princeton.edu/
+ * https://algs4.cs.princeton.edu/42digraph/Digraph.java.html
+ * 
  * I used these resources as a reference and
- * modified it to better suit my purposes and removed unneccesary code
+ * modified it to better suit my purposes and removed unnecessary code
+ * 
  * 
  * 
  * 
@@ -13,12 +19,7 @@ import java.util.ArrayList;
  */
 
 
-/*Coding Notes so far
- * 
- * Create a Directed graph Structure according to the Unit tests
- * Need to make sure the graph is not cyclic
- * Need to find a way to find the LCA by moving through the graph
- */
+ 
 public class DAG 
 {
 
@@ -27,8 +28,10 @@ public class DAG
 	private int E;         //Edges        
 
 	private ArrayList<Integer>[] adj;//Replacing the original BAG data structure with a fixed size array where every node corresponds to its 
-	//index and each index contains an arrayList of all children
-	private int[] indegree;       //How many incomign links this node has
+									//index and each index contains an arrayList of all children
+	private ArrayList<Integer>[] parents;  //Array for the parents of each Node
+								
+
 
 
 
@@ -39,29 +42,40 @@ public class DAG
 
 
 
+	
 	//Making the empty graph
+	/*
+	 * 
+	 * 
+	 */
 	public DAG(int V) 
 	{
 		if (V < 0) throw new IllegalArgumentException("Can't have Negative Vertices");
 		this.V = V;
 		this.E = 0;
 
-		indegree = new int[V];
+		
 		marked = new boolean[V];
 		onStack = new boolean[V];
 		
-		
+		parents = new ArrayList[V]; 
 		adj =  new ArrayList[V];//Eclipse complains about this for some reason
 
 
 		for(int v = 0; v < V; v++)
 		{
-			adj[v] = new ArrayList<Integer>();		
+			adj[v] = new ArrayList<Integer>();	
+			parents[v] = new ArrayList<Integer>();
 		}
 	}
+	
+	
 
-
-
+	/*This add function was based on code found here:
+	 * https://algs4.cs.princeton.edu/42digraph/Digraph.java.html
+	 * We studied these graphs in our Algorithms and Data Structure Modules 
+	 * There was several modifications to make it work for this class
+	 */
 	public boolean add(int v, int w) 
 	{
 		if(v<0||w<0||v>V||w>V)
@@ -70,9 +84,14 @@ public class DAG
 		}
 		
 		adj[v].add(w);//Add w to the arraylist of vertex v's children
-		indegree[w]++;//Increase the number of links that are attached to w.
+		parents[w].add(v);//Add w to the arraylist of vertex w's parents
+		
+		
 		E++;
 		
+		
+		
+		//Checking to see if any cycles have been created
 		dfs(v);//Check if a new cycle has been formed
 		resetCycleDetection();
 		dfs(w);//Check if a new cycle has been formed
@@ -80,8 +99,13 @@ public class DAG
 		
 
 		return true;
+		
 	}
 	
+	
+	
+	//Avoiding the problem of multiple cycle checks failing because marked and OnStack are not cleared
+	//Does not return anything
 	public void resetCycleDetection()
 	{
 		
@@ -93,13 +117,18 @@ public class DAG
 		
 	}
 
+	
 
-
+	//from https://algs4.cs.princeton.edu/42digraph/Digraph.java.html
 	public Iterable<Integer> adj(int v) 
-	{    
+	{  
+		
 		return adj[v];
+		
 	}
 
+	
+	
 
 	//I read up on the algorithm for finding cycles in a Directed Graph here:
 	// https://www.algotree.org/algorithms/tree_graph_traversal/depth_first_search/cycle_detection_in_directed_graphs/
@@ -129,7 +158,7 @@ public class DAG
 			// 
 			else if (onStack[w]==true)
 			{
-				
+				System.out.println("Testing");
 				cycleExists=true;
 				return;
 			}
@@ -139,15 +168,97 @@ public class DAG
 	}
 
 
+	
+	
 
-
+	/*Similar to my binary search tree implementation of the LCA, this function, finds all the ancestors of a particular Node and returns them in an ArrayList
+	 * It then repeats this for the second Node and then compares these lists to find which one they have in common. The first one they find is the
+	 * Lowest common Ancestor.
+	 * In the event where they have two least common ancestors it will just pick the first one found and return it as an integer.
+	 * 
+	 * returns -1 if the there is no LCA or the function failed
+	 */
+	
 	public int getLCA(int a, int b)
 	{
-		return -1;
+		if(a<0 ||b<0 ||a>V||b>V|| E==0||cycleExists==true)
+		{
+			
+			return -1;
+			
+		}
+			
+		ArrayList<Integer> parentsOfA = bfs(a);
+		ArrayList<Integer> parentsOfB = bfs(b);
+		
+		ArrayList<Integer> ancestorsInCommonInOrder = new ArrayList<Integer>();
 
+		for(int i = 0; i < parentsOfA.size(); i++)
+		{
+			for(int k = 0; k < parentsOfB.size(); k++)
+			{
+				if(parentsOfA.get(i).equals(parentsOfB.get(k)))
+				{
+					ancestorsInCommonInOrder.add(parentsOfA.get(i));				
+				}
+			}
+		}
+		if(ancestorsInCommonInOrder.size()!=0)
+		{
+			int lca=ancestorsInCommonInOrder.get(0);
+			return lca;
+		}
+		else
+		{
+			return -1; 
+		}
 	}
-
-
-
+	
+	
+	
+	
+	//breadth first search algorithm I found online here:https://www.geeksforgeeks.org/breadth-first-search-or-bfs-for-a-graph/
+	/*I modified it slightly to record the ancestors instead of just searching through the graph
+	 * This breadth first search will go through each of the ancestors of a node and add them to an arrayList
+	 * Eventually it will reach a point where there are no more ancestors
+	 * 
+	 */
+	public ArrayList<Integer> bfs(int s)
+	{
+		
+		LinkedList<Integer> queue = new LinkedList<Integer>();
+		
+		boolean visited[] = new boolean[V]; 
+		
+		visited[s] = true;
+		queue.add(s);
+		
+		ArrayList<Integer> parentsOfNode = new ArrayList<Integer>();
+		while(queue.size() != 0)
+		{
+			
+			
+			s = queue.poll(); 
+			
+			parentsOfNode.add(s);
+			Iterator<Integer> i = parents[s].listIterator();
+			
+			while(i.hasNext())
+			{
+				
+				int n = i.next();
+				if(!visited[n])
+				{
+					
+					visited[n] = true;
+					queue.add(n);
+					
+				}
+			}
+			
+		}
+		return parentsOfNode;
+	}
+	
 
 }
