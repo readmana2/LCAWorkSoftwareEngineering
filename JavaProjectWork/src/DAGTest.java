@@ -7,17 +7,17 @@ public class DAGTest {
 	@Test
 	public void testCreateDAG()
 	{
-		DAG dag1 = new DAG();
+		DAG dag1 = new DAG(4);
 						
 		//Testing a Normal  Binary Tree Graph
-		assert("if Dag successfully adds node 2 to 1 then it should return true",true,dag1.add(1,2));
+		assertEquals("if Dag successfully adds node 2 to 1 then it should return true",true,dag1.add(1,2));
 		dag1.add(1,3);
 		dag1.add(3,1);
 		dag1.add(3,4);
 		
 		
 		//Testing a Graph construction where each Node only has one child
-		dag1 = new DAG();
+		dag1 = new DAG(4);
 	
 		dag1.add(1,2);	
 		dag1.add(2,3);
@@ -25,7 +25,7 @@ public class DAGTest {
 		dag1.add(4,5);
 		
 		//Testing a Graph construction where a node has multiple child Nodes
-		dag1 = new DAG();
+		dag1 = new DAG(4);
 	
 		dag1.add(1,2);	
 		dag1.add(1,3);
@@ -33,7 +33,7 @@ public class DAGTest {
 		dag1.add(1,5);
 		
 		
-		Assert(true);
+		assert(true);
 		
 
 	}
@@ -43,26 +43,26 @@ public class DAGTest {
 	public void DAGLCATest()
 	{
 		
-		DAG dag1 = new DAG();
+		DAG dag1 = new DAG(4);
 		
 		dag1.add(1,2);	
 		dag1.add(1,3);
 		dag1.add(3,1);
 		dag1.add(3,4);
 		
-		assert(3,dag1.getLCA(1,4));
-		assert(1,dag1.getLCA(2,4));
+		assertEquals(3,dag1.getLCA(1,4));
+		assertEquals(1,dag1.getLCA(2,4));
 		
 		
 		//Testing a Graph construction where each Node only has one child
-		dag1 = new DAG();
+		dag1 = new DAG(4);
 	
 		dag1.add(1,2);	
 		dag1.add(2,3);
 		dag1.add(3,4);
 		dag1.add(4,5);
 		
-		assert(2,dag1.getLCA(2,5));
+		assertEquals(2,dag1.getLCA(2,5));
 		
 		
 		
