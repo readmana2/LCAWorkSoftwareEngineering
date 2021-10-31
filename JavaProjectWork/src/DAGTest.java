@@ -34,7 +34,20 @@ public class DAGTest {
 		
 		
 		assert(true);
+			
 		
+		DAG dag2 = new DAG(10);
+		dag2.add(0,1);   //        _0_
+		dag2.add(0,2);   //      /     \
+		dag2.add(2,3);   //    _2_      1
+		dag2.add(2,4);   //  /     \
+		dag2.add(3,5);   // 3       4
+		dag2.add(4,6);   //  \     /
+		dag2.add(6,7);   //   5   6
+						 //        \
+						 //         7
+		assertEquals("if Dag successfully adds node then should return true",true,dag2.add(7,8));
+
 
 	}
 	
@@ -60,6 +73,10 @@ public class DAGTest {
 		dag1.add(1, 0);
 		assertEquals(true, dag1.cycleExists);
 		
+		
+		
+		
+		
 	}
 	
 	@Test
@@ -82,7 +99,7 @@ public class DAGTest {
 		
 		
 		//Testing a Graph construction where each Node only has one child
-		dag1 = new DAG(6);
+		dag1 = new DAG(6);    //0->1->2->3->4->5
 	
 		dag1.add(0, 1);
 		dag1.add(1,2);	
@@ -111,7 +128,66 @@ public class DAGTest {
 		
 		
 		
+		DAG dag2 = new DAG(10);
+		dag2.add(0,1);   //        _0_
+		dag2.add(0,2);   //      /     \
+		dag2.add(2,3);   //    _2_      1
+		dag2.add(2,4);   //  /     \
+		dag2.add(3,5);   // 3       4
+		dag2.add(4,6);   //  \     /
+		dag2.add(6,7);   //   5   6
+						 //        \
+						 //         7
+		assertEquals("Checking LCA tests from BST class 1",2,dag2.getLCA(5,7));
+		assertEquals("Checking LCA tests from BST only 1 parent each",0,dag2.getLCA(2,1));
+		assertEquals("Checking LCA tests from BST class The LCA is one of the nodes input",2,dag2.getLCA(2,7));
+		assertEquals("Checking LCA tests from BST class Duplicate Nodes",5,dag2.getLCA(5,5));
+		
+		assertEquals("Checking LCA tests from BST class Duplicate Nodes",5,dag2.getLCA(5,5));
+
+
+		
+		
+		
 	
+	}
+	
+	
+	/*
+	 * 
+	 * 
+	 * THis test should test special cases that should return null and not create an error messsage
+	 * 
+	 */
+	@Test
+	public void testSpecialCases() 
+	{
+		
+		
+		
+		DAG dag2 = new DAG(10);
+		dag2.add(0,1);   //        _0_
+		dag2.add(0,2);   //      /     \
+		dag2.add(2,3);   //    _2_      1
+		dag2.add(2,4);   //  /     \
+		dag2.add(3,5);   // 3       4
+		dag2.add(4,6);   //  \     /
+		dag2.add(6,7);   //   5   6
+						 //        \
+						 //         7
+		
+		
+		assertEquals("Checking  LCA works when  there is no LCA",-1,dag2.getLCA(2,12));
+		assertEquals("Checking  LCA works when given nodes dont exist",-1,dag2.getLCA(24,12));
+
+
+		DAG dag3 = new DAG(10);
+		assertEquals("Graph doesnt have any Nodes",-1,dag3.getLCA(2,12));
+		
+
+		
+		
+				
 	}
 
 }
